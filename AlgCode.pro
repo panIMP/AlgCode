@@ -34,7 +34,20 @@ SOURCES += \
     systemTask.cpp \
     phoneNumber.cpp \
     aeiou.cpp \
-    idCard.cpp
+    idCard.cpp \
+    ball.cpp \
+    calculator.cpp \
+    dna.cpp \
+    josephRing.cpp \
+    maxNumberStr.cpp \
+    randomMul.cpp \
+    stringCompress.cpp \
+    stringFilter.cpp \
+    stringMul2.cpp \
+    stringSubtract.cpp \
+    stringTrans.cpp \
+    wordExtract.cpp \
+    yibihua.cpp
 
 HEADERS += \
     _list.h \
@@ -50,4 +63,6 @@ HEADERS += \
     stringHp.h \
     treeHp.h \
     userTypes.h
+
+OTHER_FILES +=
 

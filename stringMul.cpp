@@ -23,7 +23,7 @@ bool isAllDigit(char* str)
 }
 
 
-int main(int argc, char* argv[])
+int stringMul(int argc, char* argv[])
 {
 	char strArr[2048] = { '\0' };
 	char strBrr[2048] = { '\0' };

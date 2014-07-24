@@ -25,7 +25,7 @@ int calculator(int argc, char* argv[])
 	char* tmp = strtok(str, " ");
 	while (tmp != NULL)
 	{
-		float value = atof(tmp);
+		float value = (float)atof(tmp);
 		if (value == '+' || value == '-' || value == '*' || value == '%')
 		{
 			if (value > center.top())

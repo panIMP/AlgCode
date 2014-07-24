@@ -2,66 +2,62 @@
 
 typedef int valueType;
 
-struct binaryTreeNode
+struct bTreeNode
 {
 	valueType m_nValue;
-	binaryTreeNode* m_pLeft;
-	binaryTreeNode* m_pRight;
+	bTreeNode* m_pLeft;
+	bTreeNode* m_pRight;
 };
 
-typedef binaryTreeNode* pBinaryTreeNode;
+typedef bTreeNode* pBTreeNode;
 
 
 
 // Create a binary search tree
-pBinaryTreeNode
+pBTreeNode
 createBinarySearchTree(valueType array[], int nodeNum);
 
 
 // Insert a node into binary search tree
-pBinaryTreeNode
-insertIntoBinarySearchTree(valueType value, pBinaryTreeNode& pNode);
+pBTreeNode
+insertIntoBinarySearchTree(valueType value, pBTreeNode& pNode);
 
 
 // Print in preorder
 void
-printBinaryTreePreorderRecursive(pBinaryTreeNode pNode);
+printBinaryTreePreorderRecursive(pBTreeNode pNode);
 
 void
-printBinaryTreePreorderStack1(pBinaryTreeNode root);
+printBinaryTreePreorderStack1(pBTreeNode root);
 
 void
-printBinaryTreePreorderStack2(pBinaryTreeNode root);
+printBinaryTreePreorderStack2(pBTreeNode root);
 
 
 // Print in inorder
 void
-printBinaryTreeInorderRecursive(pBinaryTreeNode pNode);
+printBinaryTreeInorderRecursive(pBTreeNode pNode);
 
 void
-printBinaryTreeInorderStack(pBinaryTreeNode root);
+printBinaryTreeInorderStack(pBTreeNode root);
 
 
 // Print in postorder
 void
-printBinaryTreePostorderRecursive(pBinaryTreeNode pNode);
+printBinaryTreePostorderRecursive(pBTreeNode pNode);
 
 void
-printBinaryTreePostorderStack(pBinaryTreeNode root);
+printBinaryTreePostorderStack(pBTreeNode root);
 
 
 // Print in breadth-first order
 void
-printBinaryTreeBreadthFirstOrder(pBinaryTreeNode root);
+printBinaryTreeBreadthFirstOrder(pBTreeNode root);
 
 
 
 // Find the node through the value(Condition: no duplicate value in the tree)
-pBinaryTreeNode
-findByValue(pBinaryTreeNode pNode, valueType value);
+pBTreeNode
+findByValue(pBTreeNode pNode, valueType value);
 
-
-// Reconstruct the tree through preorder traversal and inorder traversal
-pBinaryTreeNode
-reconstructTree(valueType* preOrder, valueType* inOrder, int nodeNum);
 

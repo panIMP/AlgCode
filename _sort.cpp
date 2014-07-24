@@ -23,7 +23,7 @@ void outputArray(int a[], int len) {
 }
 
 
-void bubbleSort(int a[], int len) {
+void bubbSort(int a[], int len) {
     int tmp, i, j;
 
     for (i = 0; i < len-1; ++i) {
@@ -171,6 +171,8 @@ void heapSort(int a[], int len) {
         deleteHeap(a, len, len-i-1);
     }
 }
+
+
 
 
 

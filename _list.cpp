@@ -1,8 +1,170 @@
+#include "_list.h"
+#include <exception>
 #include <cstdio>
 #include <cstdlib>
-#include "listHp.h"
 #include <iostream>
 #include <stack>
+
+
+using namespace std;
+
+
+/* List operations */
+
+
+
+typeNode* createList(int array[], int len) {
+    int i;
+    typeNode* p;
+
+    typeNode* head = (typeNode*)malloc(sizeof(typeNode));
+    assert(head != NULL);
+
+    head->value = array[0];
+    head->next = NULL;
+
+    p = head;
+    for (i = 1; i < len; ++i) {
+        typeNode* node = (typeNode*)malloc(sizeof(typeNode));
+        node->value = array[i];
+        node->next = NULL;
+        p->next = node;
+        p = p->next;
+    }
+
+    return head;
+}
+
+
+void listReverse (typeNode* p) {
+    if (p->next != NULL) {
+        listReverse (p->next);
+    }
+
+    printf("%d", p->value);
+}
+
+void listReverse2(typeNode* node, typeNode* pre) {
+    if (node->next != NULL) {
+        listReverse2(node->next, node);
+    }
+
+    node->next = pre;
+    pre->next = NULL;
+}
+
+
+void listReverse3(typeNode** head) {
+    typeNode* pre = (*head);
+    typeNode* cur = (*head)->next;
+    typeNode* node;
+
+    assert(*head != NULL);
+
+    while (cur != NULL) {
+        node = pre;
+        pre = cur;
+        cur = cur->next;
+        pre->next = node;
+    }
+
+    (*head)->next = NULL;
+    *head = pre;
+}
+
+
+void listReverseTotal(typeNode** head)
+{
+	if (*head == NULL)
+		throw new exception("Invalid input");
+
+	typeNode* cur = *head;
+	typeNode* next = NULL;
+	typeNode* pre = NULL;
+
+	while (cur->next != NULL)
+	{
+		next = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = next;
+	}
+
+	cur->next = pre;
+	*head = cur;
+}
+
+
+typeNode* listMerge(typeNode* list1, typeNode* list2)
+{
+	if (list1 == NULL)
+		return list2;
+	if (list2 == NULL)
+		return list1;
+
+	typeNode* listMergeHead = NULL;
+
+	if (list1->value < list2->value)
+	{
+		listMergeHead = list1;
+		listMergeHead->next = listMerge(list1->next, list2);
+	}
+	else
+	{
+		listMergeHead = list2;
+		listMergeHead->next = listMerge(list1, list2->next);
+	}
+
+	return listMergeHead;
+}
+
+
+typeNode* listMerge2(typeNode* list1, typeNode* list2)
+{
+	if (list1 == NULL)
+		return list2;
+	if (list2 == NULL)
+		return list1;
+
+	typeNode* listMergeHead = list1->value <= list2->value ? list1 : list2;
+
+	typeNode* list1Pre = list1;
+	typeNode* list2Pre = list2;
+
+	while (list1 != NULL && list2 != NULL)
+	{
+		while (list1 != NULL && list1->value <= list2->value)
+		{
+			list1Pre = list1;
+			list1 = list1->next;
+		}
+
+		list1Pre->next = list2;
+		if (list1 == NULL)
+			break;
+
+		while (list2 != NULL && list2->value <= list1->value)
+		{
+			list2Pre = list2;
+			list2 = list2->next;
+		}
+
+		list2Pre->next = list1;
+		if (list2 == NULL)
+			break;
+	}
+	
+	return listMergeHead;
+}
+
+
+void printList(typeNode* head) {
+    while (head) 
+	{
+        printf("%d", head->value);
+        head = head->next;
+    }
+}
 
 
 
@@ -40,7 +202,7 @@ creatList(int memberNum)
 
 
 // Print the list
-void 
+void
 printList(pListNode list)
 {
 	while (list != nullptr)
@@ -52,7 +214,7 @@ printList(pListNode list)
 
 
 // Get the length of the list
-int 
+int
 getListLen(pListNode list)
 {
 	int len = 0;
@@ -67,12 +229,12 @@ getListLen(pListNode list)
 
 
 // Get the tail of the list
-pListNode 
+pListNode
 getListTail(pListNode list)
 {
 	while (list->m_pNext != nullptr)
 		list = list->m_pNext;
-	
+
 	return list;
 }
 
@@ -97,7 +259,7 @@ RemoveNode(pListNode* pHead, int value)
 	else
 	{
 		pListNode pCurNode = *pHead;
-		
+
 		while (pCurNode != nullptr)
 		{
 			if (pCurNode->m_pNext->m_nValue == value)
@@ -105,7 +267,7 @@ RemoveNode(pListNode* pHead, int value)
 				pToBeDeleted = pCurNode->m_pNext;
 				pCurNode->m_pNext = pToBeDeleted->m_pNext;
 				pToBeDeleted->m_pNext = nullptr;
-				
+
 				delete pToBeDeleted;
 				pToBeDeleted = nullptr;
 			}
@@ -117,8 +279,8 @@ RemoveNode(pListNode* pHead, int value)
 
 
 // Find the Kth node to list tail 
-pListNode 
-findKth2Tail(pListNode list, int k) 
+pListNode
+findKth2Tail(pListNode list, int k)
 {
 	if (k < 0 || k > getListLen(list))
 	{
@@ -174,7 +336,7 @@ reversePrintList2(pListNode listHead)
 		return;
 
 	std::stack<listNode*> reverseList;
-	
+
 	pListNode listPtr = listHead;
 	while (listPtr != nullptr)
 	{
@@ -194,7 +356,7 @@ reversePrintList2(pListNode listHead)
 // Reverse the list
 
 // method1: using recursive functions
-void 
+void
 reverseList1(pListNode pre, pListNode cur)
 {
 	if (pre == nullptr || cur == nullptr)
@@ -209,7 +371,7 @@ reverseList1(pListNode pre, pListNode cur)
 
 
 // method2: using loop
-void 
+void
 reverseList2(pListNode head)
 {
 	pListNode pre = head;

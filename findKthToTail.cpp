@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <exception>
+
+
+using namespace std;
 
 
 struct ListNode
@@ -11,22 +15,79 @@ struct ListNode
 
 ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
 {
-    unsigned int i = 0;
+	if (pListHead == NULL || k == 0)
+		return NULL;
+
     ListNode* pAhead = pListHead;
-    ListNode* pBehind = pListHead;
+	for (unsigned int i = 0; i < k - 1; ++i)
+	{
+		if (pAhead->m_pNext != NULL)
+			pAhead = pAhead->m_pNext;
+		else
+			return NULL;
+	}
 
-    for (i = 0; i < k - 1; ++i)
-    {
-        pAhead = pAhead->m_pNext;
-    }
+	ListNode* pBehind = pListHead;
+	while (pAhead ->m_pNext != NULL)
+	{
+		pAhead = pAhead->m_pNext;
+		pBehind = pBehind->m_pNext;
+	}
 
-    while (pAhead->m_pNext != NULL)
-    {
-        pBehind = pBehind->m_pNext;
-        pAhead = pAhead->m_pNext;
-    }
+	return pBehind;
+}
 
-    return pBehind;
+
+ListNode* findMidInList(ListNode* pListHead)
+{
+	if (pListHead == NULL)
+		return NULL;
+
+	ListNode* pSingleStep = pListHead;
+	ListNode* pDoubleStep = pListHead;
+
+	while (pDoubleStep->m_pNext != NULL)
+	{
+		pDoubleStep = pDoubleStep->m_pNext;
+		pSingleStep = pSingleStep->m_pNext;
+
+		if (pDoubleStep->m_pNext != NULL)
+		{	
+			pDoubleStep = pDoubleStep->m_pNext;
+		}
+		else
+			return pSingleStep;
+	}
+
+	return pSingleStep;
+}
+
+
+bool checkListCircle(ListNode* pListHead)
+{
+	if (pListHead == NULL)
+		throw new exception("Invalid input");
+
+	ListNode* pSingleStep = pListHead;
+	ListNode* pDoubleStep = pListHead;
+
+	while (pDoubleStep->m_pNext != NULL)
+	{
+		pDoubleStep = pDoubleStep->m_pNext;
+		pSingleStep = pSingleStep->m_pNext;
+		
+		if (pDoubleStep->m_pNext != NULL)
+		{
+			pDoubleStep = pDoubleStep->m_pNext;
+		}
+		else
+			return false;
+		
+		if (pDoubleStep == pSingleStep || pDoubleStep->m_pNext == pSingleStep)
+			return true;
+	}
+
+	return false;
 }
 
 
@@ -77,6 +138,8 @@ int findKth2Tail(int argc, char* argv[])
         return -1;
 
     printf("%d", pNodeRk->m_nKey);
+
+	return 0;
 }
 
 

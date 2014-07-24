@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-int stringMul(int argc, char* argv[])
+int stringMul2(int argc, char* argv[])
 {
     deque<char> A;
     A.push_front(2);
