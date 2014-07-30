@@ -44,7 +44,7 @@ int score(int argc, char* argv[])
     int len = 0;
 
     printf("input the scores:\n");
-    gets(str);
+    fgets(str, 1024, stdin);
     len = strlen(str);
     tmpStr = strtok(str, " ");
     while (tmpStr != NULL) {
@@ -55,7 +55,7 @@ int score(int argc, char* argv[])
 
     printf("input the judge type:\n");
     memset(str, 0, len);
-    gets(str);
+    fgets(str, 1024, stdin);
     tmpStr = strtok(str, " ");
     while (tmpStr != NULL) {
         judge_type[j] = atoi(tmpStr);

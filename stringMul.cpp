@@ -29,8 +29,8 @@ int stringMul(int argc, char* argv[])
 	char strBrr[2048] = { '\0' };
 	char strRrr[4096] = { '\0' };
 
-	gets(strArr);
-	gets(strBrr);
+    fgets(strArr, 2048, stdin);
+    fgets(strBrr, 2048, stdin);
 
 	char* strA = strArr;
 	char* strB = strBrr;

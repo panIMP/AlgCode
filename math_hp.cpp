@@ -38,7 +38,7 @@ double powerWithUnsigned(double x, unsigned int n)
 double power(double x, int n)
 {
 	if (n < 0 && dEqual(x, 0.0))
-		throw new exception("Invalid input");
+        throw new exception();
 
 	bool negFlag = false;
 	if (n < 0)

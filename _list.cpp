@@ -76,7 +76,7 @@ void listReverse3(typeNode** head) {
 void listReverseTotal(typeNode** head)
 {
 	if (*head == NULL)
-		throw new exception("Invalid input");
+        throw new exception();
 
 	typeNode* cur = *head;
 	typeNode* next = NULL;

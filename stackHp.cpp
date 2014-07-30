@@ -36,7 +36,7 @@ public:
 		}
 
 		if (stack2.size() == 0)
-			throw std::exception("queue is empty");
+            throw std::exception();
 
 		T& data = stack2.top();
 		stack2.pop();
@@ -157,7 +157,7 @@ private:
 bool isPopOrder(const int* pPush, const int* pPop, int len)
 {
 	if (pPush == NULL || pPop == NULL)
-		throw new exception("Invalid input");
+        throw new exception();
 
 	bool isPossible = false;
 

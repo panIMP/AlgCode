@@ -63,7 +63,7 @@ int poker(int argc, char* argv[])
     memset(preStr,0,100);
     memset(postStr,0,100);
 
-    if (gets(str) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
 
     char* tmpStr = NULL;

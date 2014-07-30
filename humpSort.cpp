@@ -18,16 +18,15 @@ int humpSort(int argc, char* argv[])
 {
     char str[1024] = {'\0'};
     int value[1024] = {0};
-	char* p;
 
-    gets_s(str, 1024);
+    fgets(str, 1024, stdin);
     int i = 0;
     int j = 0;
-    char* tmp = strtok_s(str, " ", &p);
+    char* tmp = strtok(str, " ");
     while (tmp != NULL) {
         value[i] = atoi(tmp);
         i ++;
-        tmp = strtok_s(NULL, " ", &p);
+        tmp = strtok(NULL, " ");
     }
 
     int len = i;

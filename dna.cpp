@@ -12,7 +12,7 @@ int dna(int argc, char* argv[])
 	char str[2048] = { '\0' };
 	int subLen = 0;
 
-	gets(str);
+    fgets(str, 2048, stdin);
 	string str2 = string(str);
 	int len = strlen(str);
 

@@ -66,7 +66,7 @@ ListNode* findMidInList(ListNode* pListHead)
 bool checkListCircle(ListNode* pListHead)
 {
 	if (pListHead == NULL)
-		throw new exception("Invalid input");
+        throw new exception();
 
 	ListNode* pSingleStep = pListHead;
 	ListNode* pDoubleStep = pListHead;
@@ -100,7 +100,7 @@ int findKth2Tail(int argc, char* argv[])
     int k = 0;
     ListNode* pNodeRk = NULL;
 
-    scanf_s("%d", &nodeNum);
+    scanf("%d", &nodeNum);
     if (nodeNum <= 0)
         return -1;
 
@@ -122,7 +122,7 @@ int findKth2Tail(int argc, char* argv[])
 
     for (i = 0; i < nodeNum; ++i)
     {
-        if (scanf_s("%d", &(listPtr->m_nKey)) < 1)
+        if (scanf("%d", &(listPtr->m_nKey)) < 1)
             return -1;
 
         listPtr = listPtr->m_pNext;
@@ -130,7 +130,7 @@ int findKth2Tail(int argc, char* argv[])
     if (getchar() != '\n')
         return -1;
 
-    scanf_s("%d", &k);
+    scanf("%d", &k);
     if (k < 0 || k > nodeNum)
         return -1;
 

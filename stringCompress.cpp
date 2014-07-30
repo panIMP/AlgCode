@@ -41,7 +41,7 @@ int stringCompress(int argc, char* argv[])
 	char str[1024] = { '\0' };
 	char outStr[1024] = { '\0' };
 
-	gets(str);
+    fgets(str, 1024, stdin);
 
 	stringZip(str, strlen(str), outStr);
 

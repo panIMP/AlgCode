@@ -28,7 +28,7 @@ int beautyName()
     unsigned int j = 0;
     int* value = NULL;
 
-    if (scanf_s("%d", &nameNum) < 1)
+    if (scanf("%d", &nameNum) < 1)
         return -1;
 
     getchar();
@@ -39,7 +39,7 @@ int beautyName()
         memset(str, 0, strlen(str));
         memset(hist, 0, 26);
 
-        if(gets_s(str, 1024) == NULL)
+        if(fgets(str, 1024, stdin) == NULL)
             return -1;
 
         for (j = 0; j < strlen(str); ++j)

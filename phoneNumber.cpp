@@ -12,7 +12,7 @@ int verifyMsisdn(char* inMsisdn)
         return 1;
 
     long long int phoneNum = 0;
-    if (sscanf(inMsisdn, "%I64d", &phoneNum) < 1)
+    if (sscanf(inMsisdn, "%lld", &phoneNum) < 1)
         return 2;
 
     if (phoneNum < 10e11)
@@ -30,7 +30,7 @@ int verifyMsisdn(char* inMsisdn)
 int phoneNum()
 {
     char str[1024] = {'\0'};
-    gets(str);
+    fgets(str, 1024, stdin);
 
     int retVal = verifyMsisdn(str);
 

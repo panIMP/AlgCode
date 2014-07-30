@@ -5,10 +5,8 @@ int intRever(int argc, char* argv[])
 {
     char str[1024] = {'\0'};
 
-    if (gets_s(str, 1024) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
-
-    _strrev(str);
 
     puts(str);
 

@@ -287,14 +287,14 @@ pBTreeNode reconsTroughPreAndIn(int* preHead, int* preEnd, int* inHead, int* inE
 			return rootNode;
 		}
 		else
-			throw std::exception("Invalid input!\n");
+            throw std::exception();
 	}
 
 	int* rootIn = inHead;
 	while (rootIn <= inEnd && *rootIn != rootVal)
 		rootIn++;
 	if (rootIn == inEnd && *rootIn != rootVal)
-		throw std::exception("Invalid input!\n");
+        throw std::exception();
 	
 	int leftLen = rootIn - inHead;
 	int rightLen = inEnd - rootIn;

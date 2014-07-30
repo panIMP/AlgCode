@@ -69,9 +69,8 @@ int idCard()
 	while (1)
 	{
 		char str[1024] = { '\0' };
-		char tmpStr[1024] = { '\0' };
 
-		gets(str);
+        fgets(str, 1024, stdin);
 
 		int retVal = verifyIDCard(str);
 

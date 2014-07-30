@@ -48,7 +48,7 @@ struct matrix2By2
 };
 
 
-matrix2By2 matrixMul(matrix2By2& mat1, matrix2By2& mat2)
+matrix2By2 matrixMul(const matrix2By2& mat1, const matrix2By2& mat2)
 {
 	return matrix2By2
 		(
@@ -59,7 +59,7 @@ matrix2By2 matrixMul(matrix2By2& mat1, matrix2By2& mat2)
 		);
 }
 
-matrix2By2 matrixPow(matrix2By2& mat, long long n)
+matrix2By2 matrixPow(const matrix2By2& mat, long long n)
 {
 	assert(n > 0);
 

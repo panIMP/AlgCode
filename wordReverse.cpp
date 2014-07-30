@@ -27,7 +27,7 @@ int wordReverse(int argc, char* argv[])
         {
             sscanf(str + i, "%[^.,?! ]s", str2);
             i += strlen(str2) - 1;
-            printf("%s", _strrev(str2));
+            //printf("%s", _strrev(str2));
             memset(str2, 0, strlen(str2));
         }
     }

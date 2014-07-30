@@ -9,7 +9,7 @@ using namespace std;
 void reorderOddEven(int* pData, int len)
 {
 	if (pData == NULL || len <= 0)
-		throw new exception("Invalid input for reorderOddEven");
+        throw new exception();
 
 	int* pre = pData;
 	int* post = pData + len - 1;
@@ -39,7 +39,7 @@ void reorderOddEven(int* pData, int len)
 void reorder(int* pData, int len, bool(*func)(int))
 {
 	if (pData == NULL || len <= 0)
-		throw new exception("Invalid input for reorderOddEven");
+        throw new exception();
 
 	int* pre = pData;
 	int* post = pData + len - 1;

@@ -6,7 +6,7 @@ int isLegalCoord(char* str, int* num, char* direct)
 {
     int len = strlen(str);
 
-    if (sscanf_s(str,"%c%d", direct, num) < 2)
+    if (sscanf(str,"%c%d", direct, num) < 2)
         return 0;
 
     if (*direct != 'A' && *direct != 'D' && *direct != 'W' && *direct != 'S')
@@ -30,13 +30,12 @@ int coordinate()
     char direct = '\0';
     int x = 0;
     int y = 0;
-	char* p;
 
     memset(str, 0, strlen(str));
-    if (gets_s(str, 1024) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
 
-	tmpStr = strtok_s(str, ";", &p); 
+    tmpStr = strtok(str, ";");
     while (tmpStr != NULL) {
         if (isLegalCoord(tmpStr, &num, &direct))
         {
@@ -50,7 +49,7 @@ int coordinate()
                 y -= num;
         }
 
-        tmpStr = strtok_s(NULL, ";", &p);
+        tmpStr = strtok(NULL, ";");
     }
 
     printf("%d,%d", x, y);

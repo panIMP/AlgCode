@@ -6,63 +6,69 @@ CONFIG += c++11
 
 SOURCES += \
     alphaCount.cpp \
+    ball.cpp \
     beautyName.cpp \
+    calculator.cpp \
     coordinate.cpp \
     danci.cpp \
+    dna.cpp \
     fibonacci.cpp \
     findInPartiallySortedMatrix.cpp \
     findKthToTail.cpp \
+    humpSort.cpp \
+    idCard.cpp \
     intReverse.cpp \
     ip2Num.cpp \
+    josephRing.cpp \
     lastWord.cpp \
-    listHp.cpp \
+    _list.cpp \
+    listMultiNum.cpp \
+    math_hp.cpp \
+    maxNumberStr.cpp \
     mergeSortedArray.cpp \
+    oneNuminInt.cpp \
+    phoneNumber.cpp \
     poker.cpp \
+    randomMul.cpp \
     replaceBlank.cpp \
+    score.cpp \
     sentenReverse.cpp \
     singleton.cpp \
-    stringHp.cpp \
-    stringMul.cpp \
-    treeHp.cpp \
-    userTypes.cpp \
-    wordReverse.cpp \
-    _list.c \
-    _sort.c \
-    _string.c \
-    score.cpp \
-    humpSort.cpp \
-    systemTask.cpp \
-    phoneNumber.cpp \
-    aeiou.cpp \
-    idCard.cpp \
-    ball.cpp \
-    calculator.cpp \
-    dna.cpp \
-    josephRing.cpp \
-    maxNumberStr.cpp \
-    randomMul.cpp \
+    _sort.cpp \
+    sortHp.cpp \
+    stackHp.cpp \
+    _string.cpp \
     stringCompress.cpp \
     stringFilter.cpp \
+    stringHp.cpp \
+    stringMul.cpp \
     stringMul2.cpp \
     stringSubtract.cpp \
     stringTrans.cpp \
+    swapOddEven.cpp \
+    systemTask.cpp \
+    treeHp.cpp \
+    userTypes.cpp \
     wordExtract.cpp \
-    yibihua.cpp
+    wordReverse.cpp \
+    yibihua.cpp \
+    uglyNumber.cpp \
+    getNumberOfKInSortedArray.cpp
+
+OTHER_FILES += \
+    AlgCode.pro.user
 
 HEADERS += \
-    _list.h \
-    _sort.h \
-    _std.h \
-    _string.h \
     fibonacci.h \
     findInPartiallySortedMatrix.h \
-    listHp.h \
+    _list.h \
     mergeSortedArray.h \
     replaceBlank.h \
     singleton.h \
+    _sort.h \
+    _std.h \
+    _string.h \
     stringHp.h \
     treeHp.h \
     userTypes.h
-
-OTHER_FILES +=
 

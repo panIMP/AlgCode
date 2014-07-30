@@ -12,7 +12,7 @@ int sentenReverse(int argc, char* argv[])
     string subStr;
     char* tmpStr;
 
-    if (gets(str) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
 
     tmpStr = strtok(str, " ");

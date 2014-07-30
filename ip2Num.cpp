@@ -9,13 +9,13 @@ int ip2Num()
     long pow164 = 16 * 16 * 16 * 16;
     long pow162 = 16 * 16;
 
-    if (gets_s(strIP, 1024) == NULL)
+    if (fgets(strIP, 1024, stdin) == NULL)
         return -1;
 
-    if (scanf_s("%ld", &numIP) != 1)
+    if (scanf("%ld", &numIP) != 1)
         return -1;
 
-    if (sscanf_s(strIP, "%ld.%ld.%ld.%ld", &a[0], &a[1], &a[2], &a[3]) < 4)
+    if (sscanf(strIP, "%ld.%ld.%ld.%ld", &a[0], &a[1], &a[2], &a[3]) < 4)
         return -1;
 
     if (a[0] > 255 || a[0] < 0 || a[1] > 255 || a[1] < 0 || a[2] > 255 || a[2] < 0 || a[3] > 255 || a[3] < 0)

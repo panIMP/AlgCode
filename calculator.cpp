@@ -3,6 +3,7 @@
 #include <stack>
 #include <ctype.h>
 #include <algorithm>
+#include <string.h>
 
 
 using namespace std;
@@ -12,7 +13,7 @@ int calculator(int argc, char* argv[])
 {
 
 	char str[1024];
-	gets(str);
+    fgets(str, 1024, stdin);
 
 	int len = strlen(str);
 

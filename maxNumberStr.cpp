@@ -5,7 +5,7 @@
 int maxNumberStr(int argc, char* argv[])
 {
 	char str[1024] = { '\0' };
-	gets(str);
+    fgets(str, 1024, stdin);
 
 	if (str == NULL)
 		return -1;

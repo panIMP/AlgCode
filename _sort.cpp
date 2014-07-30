@@ -1,5 +1,6 @@
 #include "_sort.h"
 #include "_std.h"
+#include <stdio.h>
 
 void swap(int* a, int* b) {
     int tmp;

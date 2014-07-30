@@ -11,7 +11,7 @@ int alpha(int argc, char* argv[])
     int count = 0;
 
 
-    if (gets_s(str, 1024) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
 
     len = strlen(str);
