@@ -53,7 +53,8 @@ SOURCES += \
     wordReverse.cpp \
     yibihua.cpp \
     uglyNumber.cpp \
-    getNumberOfKInSortedArray.cpp
+    getNumberOfKInSortedArray.cpp \
+    _search.cpp
 
 OTHER_FILES += \
     AlgCode.pro.user

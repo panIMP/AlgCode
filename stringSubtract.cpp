@@ -95,7 +95,7 @@ void stringSubtract()
 		char str[2048] = { '\0' };
 		char outStr[2048] = { '\0' };
 
-		gets(str);
+        fgets(str, 2048, stdin);
 
 		char* input1 = strtok(str, "-");
 		char* input2 = strtok(NULL, "-");

@@ -382,6 +382,80 @@ void mirrorBTree(pBTreeNode root)
 }
 
 
+int getTreeDepth(pBTreeNode root)
+{
+    if (root == nullptr)
+        return 0;
+
+    int nLeft = getTreeDepth(root->m_pLeft);
+    int nRight = getTreeDepth(root->m_pRight);
+
+    return (nLeft > nRight ? nLeft + 1 : nRight + 1);
+}
+
+
+bool isBalancedTree(pBTreeNode root)
+{
+    if (root == nullptr)
+        return false;
+
+    int nLeft = getTreeDepth(root->m_pLeft);
+    int nRight = getTreeDepth(root->m_pRight);
+    int diff = nLeft - nRight;
+
+    if (diff > 1 || diff < -1)
+        return false;
+
+    return(isBalancedTree(root->m_pLeft) && isBalancedTree(root->m_pRight));
+}
+
+
+bool isBalancedTreeOptimized(pBTreeNode root, int& depth)
+{
+    if (root == NULL)
+    {
+        depth = 0;
+        return false;
+    }
+
+    int left = 0;
+    int right = 0;
+    if (isBalancedTreeOptimized(root->m_pLeft, left) && isBalancedTreeOptimized(root->m_pRight, right))
+    {
+        int diff = left - right;
+        if (diff > 1 || diff < -1)
+            return false;
+        else
+        {
+            depth = left > right ? left + 1 : right + 1;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

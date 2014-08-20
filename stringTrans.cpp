@@ -3,6 +3,7 @@
 
 
 
+
 void convert(char* input, char* output)
 {
 	int flag = 1;

@@ -13,6 +13,7 @@ typedef multiset<int, greater<int>> intSet;
 typedef multiset<int, greater<int>>::iterator intSetIter;
 
 
+
 static inline void swap(void* a,  void* b)
 {
 	int aVal = *((int*)a);
@@ -287,7 +288,6 @@ int maxSumOfSubArray(int* list, int len)
 
     return maxSum;
 }
-
 
 
 
