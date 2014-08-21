@@ -1,4 +1,3 @@
-#include "mergeSortedArray.h"
 #include <cstdlib>
 #include <cstring>
 

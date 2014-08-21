@@ -1,5 +1,3 @@
-#include "replaceBlank.h"
-
 //"abcd 34 298 df";
 int
 replaceBlank(char inputString[], int maxLength)

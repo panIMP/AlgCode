@@ -1,9 +1,21 @@
-#include "_list.h"
 #include <exception>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
 #include <stack>
+
+#include "_std.h"
+
+typedef struct _typeNode {
+    int value;
+    struct _typeNode* next;
+}typeNode;
+
+typedef struct _LIST_NODE
+{
+	int m_nValue;
+	_LIST_NODE* m_pNext;
+} listNode, *pListNode;
 
 
 using namespace std;

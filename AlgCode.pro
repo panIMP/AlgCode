@@ -21,7 +21,6 @@ SOURCES += \
     ip2Num.cpp \
     josephRing.cpp \
     lastWord.cpp \
-    _list.cpp \
     listMultiNum.cpp \
     math_hp.cpp \
     maxNumberStr.cpp \
@@ -34,10 +33,8 @@ SOURCES += \
     score.cpp \
     sentenReverse.cpp \
     singleton.cpp \
-    _sort.cpp \
     sortHp.cpp \
     stackHp.cpp \
-    _string.cpp \
     stringCompress.cpp \
     stringFilter.cpp \
     stringHp.cpp \
@@ -48,28 +45,17 @@ SOURCES += \
     swapOddEven.cpp \
     systemTask.cpp \
     treeHp.cpp \
-    userTypes.cpp \
     wordExtract.cpp \
     wordReverse.cpp \
     yibihua.cpp \
     uglyNumber.cpp \
     getNumberOfKInSortedArray.cpp \
-    _search.cpp
+    aeiou.cpp \
+    listHp.cpp \
+    searchHp.cpp
 
 OTHER_FILES += \
     AlgCode.pro.user
 
-HEADERS += \
-    fibonacci.h \
-    findInPartiallySortedMatrix.h \
-    _list.h \
-    mergeSortedArray.h \
-    replaceBlank.h \
-    singleton.h \
-    _sort.h \
-    _std.h \
-    _string.h \
-    stringHp.h \
-    treeHp.h \
-    userTypes.h
+HEADERS += _std.h \
 

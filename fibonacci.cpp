@@ -1,8 +1,5 @@
-#include "fibonacci.h"
 #include <iostream>
 #include <assert.h>
-
-
 
 int 
 fibonacci(int n)

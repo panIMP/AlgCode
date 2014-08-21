@@ -1,5 +1,3 @@
-#include "findInPartiallySortedMatrix.h"
-
 bool 
 findNumInMatrix(int* matrix, int rows, int cols, int number)
 {

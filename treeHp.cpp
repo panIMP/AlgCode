@@ -1,13 +1,46 @@
-#include "treeHp.h"
 #include <iostream>
 #include <stack>
 #include <queue>
 #include <exception>
 
+typedef int valueType;
 
+struct bTreeNode
+{
+	valueType m_nValue;
+	bTreeNode* m_pLeft;
+	bTreeNode* m_pRight;
+};
+
+typedef bTreeNode* pBTreeNode;
 using namespace std;
 
+// Insert a node into binary search tree
+pBTreeNode
+insertIntoBinarySearchTree(valueType value, pBTreeNode& pNode)
+{
+    if (pNode == nullptr)
+    {
+        // Make an empty tree
+        pNode = new bTreeNode;
+        if (pNode == nullptr)
+            return nullptr;
 
+        pNode->m_nValue = value;
+        pNode->m_pRight = pNode->m_pLeft = nullptr;
+    }
+
+    else
+    {
+        if (pNode->m_nValue < value)
+            insertIntoBinarySearchTree(value, pNode->m_pRight);
+
+        else if (pNode->m_nValue > value)
+            insertIntoBinarySearchTree(value, pNode->m_pLeft);
+    }
+
+    return pNode;
+}
 
 // Create a binary search tree
 pBTreeNode 
@@ -21,34 +54,6 @@ createBinarySearchTree(valueType array[], int nodeNum)
 		insertIntoBinarySearchTree(array[i], root);
 
 	return root;
-}
-
-
-// Insert a node into binary search tree
-pBTreeNode
-insertIntoBinarySearchTree(valueType value, pBTreeNode& pNode)
-{
-	if (pNode == nullptr)
-	{
-		// Make an empty tree
-		pNode = new bTreeNode;
-		if (pNode == nullptr)
-			return nullptr;
-
-		pNode->m_nValue = value;
-		pNode->m_pRight = pNode->m_pLeft = nullptr;
-	}
-	
-	else
-	{	
-		if (pNode->m_nValue < value)
-			insertIntoBinarySearchTree(value, pNode->m_pRight);
-
-		else if (pNode->m_nValue > value)
-			insertIntoBinarySearchTree(value, pNode->m_pLeft);
-	}
-
-	return pNode;
 }
 
 
@@ -434,9 +439,6 @@ bool isBalancedTreeOptimized(pBTreeNode root, int& depth)
 
     return false;
 }
-
-
-
 
 
 
