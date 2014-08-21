@@ -59,7 +59,7 @@ int systemTask(int argc, char* argv[])
     int system_task[1024] = {0};
     int user_task[1024] = {0};
 
-    gets(str);
+    fgets(str, 1024, stdin);
     int i = 0;
     char* tmpStr = strtok(str, " ");
     while (tmpStr != NULL) {

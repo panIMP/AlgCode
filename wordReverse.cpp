@@ -10,7 +10,7 @@ int wordReverse(int argc, char* argv[])
     int i,len;
     char value;
 
-    if (gets(str) == NULL)
+    if (fgets(str, 1024, stdin) == NULL)
         return -1;
 
     len = strlen(str);

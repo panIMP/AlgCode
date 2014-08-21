@@ -54,7 +54,7 @@ int aeiou()
     char str[1024] = {'\0'};
     char outStr[1024] = {'\0'};
 
-    gets_s(str, 1024);
+    fgets(str, 1024, stdin);
     sortVowel(str, outStr);
 
     puts(outStr);

@@ -52,7 +52,8 @@ SOURCES += \
     getNumberOfKInSortedArray.cpp \
     aeiou.cpp \
     listHp.cpp \
-    searchHp.cpp
+    searchHp.cpp \
+    second/question19_mirrorBinaryTree.cpp
 
 OTHER_FILES += \
     AlgCode.pro.user
