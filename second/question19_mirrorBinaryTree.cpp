@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <fstream>
+#include <string>
 
 #include <stack>
 
@@ -206,14 +208,16 @@ void BinaryTree::printTreePreRecur(BinaryTreeNode* pNode) const
 
 int main(int argc, char* argv[])
 {
-    //elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
+    /*
+     * elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
+     * BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
+     */
 
-    //BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
-
-    BinaryTree* tree = new BinaryTree(RANDOM_TREE);
-    tree->input();
-
-    tree->printTree();
+    /*
+     * BinaryTree* tree = new BinaryTree(RANDOM_TREE);
+     * tree->input();
+     * tree->printTree();
+     */
 
     return 0;
 }
