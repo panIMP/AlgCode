@@ -1,5 +1,9 @@
 #include <iostream>
+#include <iomanip>
+#include <limits>
+
 #include <stack>
+
 
 using namespace std;
 
@@ -45,29 +49,45 @@ enum BINARY_TREE_ITERATION_METHOD
 // Tree class
 class BinaryTree
 {
+    // prior declaration
+    class BinaryTreeNode;
+
 public:
     // construct a tree root, then complete by continuely insert element
     explicit BinaryTree(BINARY_TREE_TYPE type = SEARCH_TREE) : mType(type) {}
-
-    // remove a node
-    void remove(const elementT& value);
 
     // construct a tree straight through the input array
     BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type = RANDOM_TREE);
 
     ~BinaryTree();
 
+    BINARY_TREE_TYPE getTreeType() const {return mType;}
+
+    // construct a tree through sequentially input stream until all the leaves are input
+    void input();
+
+    // remove a node
+    void remove(const elementT& value);
+
     // release the memory of a tree including all its tree nodes with two methods respectively
     void releaseMemIteratively();
     void releaseMemRecursively();
-
-    BINARY_TREE_TYPE getTreeType() const {return mType;}
 
     // print the tree through different iteration method
     void printTree(BINARY_TREE_ITERATION_METHOD type = PRE_ORDER_RECUR) const;
 
     // mirror itself
     void mirror();
+
+private:
+    // insert a node
+    void insert(BinaryTreeNode*& pNode, const elementT*& value, int& len) const;
+
+    // print tree preorder recursively
+    void printTreePreRecur(BinaryTreeNode* pNode) const;
+
+    // put input-element in the tree
+    void inputRecursively(BinaryTreeNode*& pNode);
 
 private:
     // Tree node class
@@ -86,12 +106,6 @@ private:
         BinaryTreeNode* mLeft = nullptr;
         BinaryTreeNode* mRight = nullptr;
     };
-
-    // insert a node
-    void insert(BinaryTreeNode*& pNode, const elementT value[], int& len) const;
-
-    // print tree preorder recursively
-    void printTreePreRecur(BinaryTreeNode* pNode) const;
 
     BinaryTreeNode* mPRoot = nullptr;
     BINARY_TREE_TYPE mType;
@@ -116,7 +130,7 @@ BinaryTree::BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type)
 
 
 // insert the element array
-void BinaryTree::insert(BinaryTreeNode*& pNode, const elementT value[], int& len) const
+void BinaryTree::insert(BinaryTreeNode*& pNode, const elementT*& value, int& len) const
 {
     if (len <= 0)
         return;
@@ -135,6 +149,34 @@ void BinaryTree::insert(BinaryTreeNode*& pNode, const elementT value[], int& len
 }
 
 
+// construct a tree through sequentially input stream until all the leaves are input
+void BinaryTree::input()
+{
+    inputRecursively(this->mPRoot);
+}
+
+
+// put input-element in the tree
+void BinaryTree::inputRecursively(BinaryTreeNode*& pNode)
+{
+    elementT value = 0;
+    cin >> value;
+
+    if (value == NULLNODE || cin.fail())
+    {
+        pNode = nullptr;
+        cin.clear();
+        cin.ignore();
+        return;
+    }
+
+    pNode = new BinaryTreeNode();
+    pNode->mValue = value;
+
+    inputRecursively(pNode->mLeft);
+    inputRecursively(pNode->mRight);
+}
+
 // print the tree through different iteration method
 void BinaryTree::printTree(BINARY_TREE_ITERATION_METHOD type) const
 {
@@ -149,7 +191,7 @@ void BinaryTree::printTree(BINARY_TREE_ITERATION_METHOD type) const
 
 
 // print tree preorder recursively
-void BinaryTree::printTreePreRecur(BinaryTreeNode *pNode) const
+void BinaryTree::printTreePreRecur(BinaryTreeNode* pNode) const
 {
     if (pNode == nullptr)
         return;
@@ -161,11 +203,15 @@ void BinaryTree::printTreePreRecur(BinaryTreeNode *pNode) const
 }
 
 
+
 int main(int argc, char* argv[])
 {
-    elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
+    //elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
 
-    BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
+    //BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
+
+    BinaryTree* tree = new BinaryTree(RANDOM_TREE);
+    tree->input();
 
     tree->printTree();
 
