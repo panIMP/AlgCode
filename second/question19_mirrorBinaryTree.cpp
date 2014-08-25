@@ -56,7 +56,7 @@ class BinaryTree
 
 public:
     // construct a tree root, then complete by continuely insert element
-    explicit BinaryTree(BINARY_TREE_TYPE type = SEARCH_TREE) : mType(type) {}
+    explicit BinaryTree(BINARY_TREE_TYPE type = SEARCH_TREE);
 
     // construct a tree straight through the input array
     BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type = RANDOM_TREE);
@@ -64,9 +64,6 @@ public:
     ~BinaryTree();
 
     BINARY_TREE_TYPE getTreeType() const {return mType;}
-
-    // construct a tree through sequentially input stream until all the leaves are input
-    void input();
 
     // remove a node
     void remove(const elementT& value);
@@ -82,14 +79,39 @@ public:
     void mirror();
 
 private:
+    // construct a tree through sequentially input stream until all the leaves are input
+    void input();
+
+    // put input-element in the tree
+    void inputRecursively(BinaryTreeNode*& pNode);
+
     // insert a node
     void insert(BinaryTreeNode*& pNode, const elementT*& value, int& len) const;
 
     // print tree preorder recursively
     void printTreePreRecur(BinaryTreeNode* pNode) const;
 
-    // put input-element in the tree
-    void inputRecursively(BinaryTreeNode*& pNode);
+    // print tree preorder iteratively
+    void printTreePreIter(BinaryTreeNode* pRoot) const;
+
+    // print tree midorder recursively
+    void printTreeMidRecur(BinaryTreeNode* pNode) const;
+
+    // print tree midorder iteratively
+    void printTreeMidIter(BinaryTreeNode* pRoot) const;
+
+    // print tree postorder recursively
+    void printTreePostRecur(BinaryTreeNode* pNode) const;
+
+    // print tree postorder iteratively
+    void printTreePostIter(BinaryTreeNode* pRoot) const;
+
+    // print tree layerorder recursively
+    void printTreeLayerRecur(BinaryTreeNode* pNode) const;
+
+    // print tree preorder iteratively
+    void printTreeLayerIter(BinaryTreeNode* pRoot) const;
+
 
 private:
     // Tree node class
@@ -114,14 +136,31 @@ private:
 };
 
 
-// construct a tree straight through the input array
-BinaryTree::BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type)
+// construct a tree root, then complete by continuely insert element
+BinaryTree::BinaryTree(BINARY_TREE_TYPE type)
 {
     this->mType = type;
 
     switch (type) {
     case RANDOM_TREE:
+        // insert element from input(std, file, etc)
+        input();
+        break;
+    default:
+        break;
+    }
+}
+
+
+// construct a tree straight through the input array
+BinaryTree::BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type)
+{
+    this->mType = type;
+
+    switch (type){
+    case RANDOM_TREE:
     {
+        // insert the element in the value array
         insert(this->mPRoot, value, len);
     }
         break;
@@ -186,6 +225,8 @@ void BinaryTree::printTree(BINARY_TREE_ITERATION_METHOD type) const
     case PRE_ORDER_RECUR:
         printTreePreRecur(this->mPRoot);
         break;
+    case PRE_ORDER_ITER:
+        printTreePreIter(this->mPRoot);
     default:
         break;
     }
@@ -205,19 +246,78 @@ void BinaryTree::printTreePreRecur(BinaryTreeNode* pNode) const
 }
 
 
+// print tree preorder iteratively
+void BinaryTree::printTreePreIter(BinaryTreeNode* pRoot) const
+{
+    if (pRoot == nullptr)
+        return;
+
+    stack<BinaryTreeNode*> nodeStack;
+    nodeStack.push(pRoot);
+
+    while(!nodeStack.empty())
+    {
+        BinaryTreeNode* tmpNode = nodeStack.top();
+        nodeStack.pop();
+        cout << tmpNode->mValue << "\t";
+
+        if (tmpNode->mRight)
+            nodeStack.push(tmpNode->mRight);
+
+        if (tmpNode->mLeft)
+            nodeStack.push(tmpNode->mLeft);
+    }
+}
+
+
+// print tree midorder recursively
+void BinaryTree::printTreeMidRecur(BinaryTreeNode* pNode) const
+{
+    if (pNode == nullptr)
+        return;
+
+    printTreeMidRecur(pNode->mLeft);
+    cout << pNode->mValue << "\t";
+    printTreeMidRecur(pNode->mRight);
+}
+
+
+// print tree midorder iteratively
+void BinaryTree::printTreeMidIter(BinaryTreeNode* pRoot) const
+{
+    if (pRoot == nullptr)
+        return;
+
+    stack<BinaryTreeNode*> nodeStack;
+    nodeStack.push(pRoot);
+
+    while(!nodeStack.empty())
+    {
+        if (tmpNode->mRight)
+            nodeStack.push(tmpNode->mRight);
+
+        BinaryTreeNode* tmpNode = nodeStack.top();
+        nodeStack.pop();
+        cout << tmpNode->mValue << "\t";
+
+        if (tmpNode->mLeft)
+            nodeStack.push(tmpNode->mLeft);
+    }
+}
+
 
 int main(int argc, char* argv[])
 {
-    /*
-     * elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
-     * BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
-     */
+    // method 1
+    elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
+    BinaryTree* tree = new BinaryTree(value, sizeof(value) / sizeof(elementT));
 
-    /*
-     * BinaryTree* tree = new BinaryTree(RANDOM_TREE);
-     * tree->input();
-     * tree->printTree();
-     */
+//    // method 2;
+//    BinaryTree* tree = new BinaryTree(RANDOM_TREE);
+//    tree->printTree();
+
+    tree->printTree(PRE_ORDER_RECUR);
+    tree->printTree(PRE_ORDER_ITER);
 
     return 0;
 }
