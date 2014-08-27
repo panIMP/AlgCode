@@ -78,7 +78,10 @@ public:
     BinaryTree& operator=(const BinaryTree& biTree);
 
     // construct a tree through sequentially input stream until all the leaves are input
-    void input(BINARY_TREE_TYPE type = RANDOM_TREE);
+    void input();
+
+    // insert one element into the search tree or max heap or min heap
+    void insertOneElement(const elementT& value);
 
     // shallow copy, share the same node data memory with father tree
     BinaryTree getSubLeftTree();
@@ -97,7 +100,10 @@ private:
     void inputRecursively(BinaryTreeNode*& pNode);
 
     // insert a node
-    void insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& value, int& len) const;
+    void insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& value, int& len);
+
+    // insert an element into search tree
+    BinaryTreeNode* insertOneElementIntoSearchTree(const elementT& value, BinaryTreeNode*& pNode);
 
     // release the node memory recursively
     void releaseRecursively(BinaryTreeNode *&pNode);
@@ -139,7 +145,7 @@ private:
     class BinaryTreeNode
     {
     public:
-        BinaryTreeNode()
+        explicit BinaryTreeNode()
         {
             ++rcCount;
         }
@@ -210,9 +216,9 @@ BinaryTree::BinaryTree(BINARY_TREE_TYPE type)
 
 
 // construct a tree through sequentially input stream until all the leaves are input
-void BinaryTree::input(BINARY_TREE_TYPE type)
+void BinaryTree::input()
 {
-    switch (type) {
+    switch (this->mType) {
     case RANDOM_TREE:
         // insert element from input(std, file, etc)
         inputRecursively(this->mPRoot);
@@ -271,7 +277,7 @@ BinaryTree::BinaryTree(const elementT value[], int len, BINARY_TREE_TYPE type)
 
 
 // insert the element array
-void BinaryTree::insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& value, int& len) const
+void BinaryTree::insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& value, int& len)
 {
     if (len <= 0 || value == nullptr)
         return;
@@ -292,6 +298,48 @@ void BinaryTree::insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& 
 
     insertArrayOfElements(pNode->mLeft, ++value, --len);
     insertArrayOfElements(pNode->mRight, ++value, --len);
+}
+
+
+// insert one element into the search tree or max heap or min heap
+void BinaryTree::insertOneElement(const elementT &value)
+{
+    switch (this->mType) {
+    case SEARCH_TREE:
+        insertOneElementIntoSearchTree(value, this->mPRoot);
+        break;
+    default:
+        break;
+    }
+
+}
+
+
+// insert an element into search tree
+BinaryTree::BinaryTreeNode* BinaryTree::insertOneElementIntoSearchTree(const elementT& value, BinaryTreeNode*& pNode)
+{
+    if (pNode == nullptr)
+    {
+        pNode = new BinaryTreeNode();
+        if (pNode == nullptr)
+        {
+            DEBUG_PRINT("memory allocation failed");
+            return nullptr;
+        }
+        else
+        {
+            pNode->mValue = value;
+            pNode->mLeft = nullptr;
+            pNode->mRight = nullptr;
+        }
+    }
+
+    if (value > pNode->mValue)
+        insertOneElementIntoSearchTree(value, pNode->mRight);
+    else if (value < pNode->mValue)
+        insertOneElementIntoSearchTree(value, pNode->mLeft);
+
+    return pNode;
 }
 
 
@@ -410,6 +458,25 @@ void BinaryTree::printTree(BINARY_TREE_ITERATION_METHOD type) const
         break;
     case PRE_ORDER_ITER:
         printTreePreIter(this->mPRoot);
+        break;
+    case MID_ORDER_RECUR:
+        printTreeMidRecur(this->mPRoot);
+        break;
+    case MID_ORDER_ITER:
+        printTreeMidIter(this->mPRoot);
+        break;
+    case POST_ORDER_RECUR:
+        printTreePostRecur(this->mPRoot);
+        break;
+    case POST_ORDER_ITER:
+        printTreePostIter(this->mPRoot);
+        break;
+    case LAYER_ORDER_RECUR:
+        printTreeLayerRecur(this->mPRoot);
+        break;
+    case LAYER_ORDER_ITER:
+        printTreeLayerIter(this->mPRoot);
+        break;
     default:
         break;
     }
@@ -615,18 +682,15 @@ void BinaryTree::printTreeLayerIter(BinaryTreeNode* pRoot) const
 
 int main(int argc, char* argv[])
 {
-    // method 1
-    elementT value[] = {10, 3, '#', '#', 4, '#', 5, 6, '#', 9, 1, 7, 8};
-    BinaryTree tree = BinaryTree(value, sizeof(value) / sizeof(elementT));
-
-//    // method 2;
-//    BinaryTree* tree = new BinaryTree(RANDOM_TREE);
-//    tree->printTree();
+    elementT value[] = {5, 3, 4, 10, 6, 9, 1, 7, 8};
+    BinaryTree tree(SEARCH_TREE);
+    for (int i = 0; i < (sizeof(value) / sizeof(elementT)); ++i)
+        tree.insertOneElement(value[i]);
 
     BinaryTree tree2;
     tree2 = tree;
 
-    tree.printTree(PRE_ORDER_RECUR);
+    tree.printTree(MID_ORDER_RECUR);
 
     cout << endl;
 
