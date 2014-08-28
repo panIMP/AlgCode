@@ -305,6 +305,9 @@ void BinaryTree::insertArrayOfElements(BinaryTreeNode*& pNode, const elementT*& 
 void BinaryTree::insertOneElement(const elementT &value)
 {
     switch (this->mType) {
+    case RANDOM_TREE:
+        DEBUG_PRINT("not a valid tree type to call this method");
+        exit(-1);
     case SEARCH_TREE:
         insertOneElementIntoSearchTree(value, this->mPRoot);
         break;
@@ -680,26 +683,26 @@ void BinaryTree::printTreeLayerIter(BinaryTreeNode* pRoot) const
 
 
 
-int main(int argc, char* argv[])
-{
-    elementT value[] = {5, 3, 4, 10, 6, 9, 1, 7, 8};
-    BinaryTree tree(SEARCH_TREE);
-    for (int i = 0; i < (sizeof(value) / sizeof(elementT)); ++i)
-        tree.insertOneElement(value[i]);
+//int main(int argc, char* argv[])
+//{
+//    elementT value[] = {5, 3, 4, 10, 6, 9, 1, 7, 8};
+//    BinaryTree tree;
+//    for (int i = 0; i < (sizeof(value) / sizeof(elementT)); ++i)
+//        tree.insertOneElement(value[i]);
 
-    BinaryTree tree2;
-    tree2 = tree;
+//    BinaryTree tree2;
+//    tree2 = tree;
 
-    tree.printTree(MID_ORDER_RECUR);
+//    tree.printTree(MID_ORDER_RECUR);
 
-    cout << endl;
+//    cout << endl;
 
-    tree2.getSubRightTree().printTree(PRE_ORDER_RECUR);
+//    tree2.getSubRightTree().printTree(PRE_ORDER_RECUR);
 
-    cout << endl;
+//    cout << endl;
 
-    return 0;
-}
+//    return 0;
+//}
 
 
 
