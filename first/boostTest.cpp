@@ -9,9 +9,8 @@ using namespace std;
 class base
 {
 public:
-    base(double pri, double dis) : priceVal(pri), discount(dis) {}
+    base(double pri, double dis = 0.11) : priceVal(pri), discount(dis) {}
     base() = default;
-
 
     void price(int test)
     {
@@ -22,6 +21,11 @@ public:
     {
         cout << name << endl;
         cout << priceVal << endl;
+    }
+
+    virtual void dist()
+    {
+        cout << discount << endl;
     }
 
     virtual ~base() = default;
@@ -41,10 +45,10 @@ protected:
 class deBase : public base
 {
 public:
-    deBase(double pri, double dis, double newDis) : base(pri, dis), newDiscount(newDis) {}
-    deBase() = default;
+    using base::base;
+    //deBase(double pri, double dis, double newDis) : base(pri, dis), newDiscount(newDis) {}
 
-    void price2(double name)
+    virtual void price2(double name)
     {
         cout << name << endl;
         cout << priceVal << endl;
@@ -62,19 +66,28 @@ private:
 };
 
 
-int main()
+class ddeBase : public deBase
 {
-    base a(100, 0.3);
-    deBase b(200, 0.4, 0.5);
-    deBase c;
+public:
+    using deBase::deBase;
 
-    int k = 23;
-    int val = k;
+private:
+    int joke;
+};
 
-    a.price();
-    a.price(21);
-    b.price(22);
-    b.price(val);
 
-    return 0;
-}
+//int main()
+//{
+//    base a(100, 0.3);
+//    deBase b(200, 0.4);
+//    deBase c(201);
+//    ddeBase d(300);
+//    deBase f;
+
+
+//    a.dist();
+//    b.dist();
+//    c.dist();
+
+//    return 0;
+//}
