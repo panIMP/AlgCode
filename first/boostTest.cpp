@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iterator>
 #include <algorithm>
+#include <myClass/myString.h>
 
 using namespace std;
 

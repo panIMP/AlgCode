@@ -54,11 +54,15 @@ SOURCES += \
 	first/wordExtract.cpp \
 	first/wordReverse.cpp \
 	first/yibihua.cpp \
-    second/question19_mirrorBinaryTree.cpp
+    second/question19_mirrorBinaryTree.cpp \
+    random/insertMinCharForLoopBack.cpp \
+    random/jsxInsertMinCharForLoopBack.cpp \
+    myClass/myString.cpp
 
 OTHER_FILES += \
 	AlgCode.pro.user
 
 HEADERS += _std.h \
-	first/_std.h
+	first/_std.h \
+    myClass/myString.h
 

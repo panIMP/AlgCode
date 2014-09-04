@@ -82,35 +82,35 @@ int findMaxDist(pBTreeNode root)
 }
 
 
-int main()
-{
-    int num = 0;
-    int nodeValue = 0;
-    pBTreeNode root = nullptr;
-    int maxDist = 0;
+//int main()
+//{
+//    int num = 0;
+//    int nodeValue = 0;
+//    pBTreeNode root = nullptr;
+//    int maxDist = 0;
 
-    cout << "input the number of nodes:\n";
-    scanf("%d", &num);
-    cout << "input the nodes value:\n";
-    for (int i = 0; i < num; ++i)
-    {
-        scanf("%d", &nodeValue);
-        insertIntoBinarySearchTree(nodeValue, root);
-    }
+//    cout << "input the number of nodes:\n";
+//    scanf("%d", &num);
+//    cout << "input the nodes value:\n";
+//    for (int i = 0; i < num; ++i)
+//    {
+//        scanf("%d", &nodeValue);
+//        insertIntoBinarySearchTree(nodeValue, root);
+//    }
 
-    try
-    {
-        maxDist = findMaxDist(nullptr);
-    }
-    catch (invalid_argument& e)
-    {
-        cout << e.what();
-    }
+//    try
+//    {
+//        maxDist = findMaxDist(nullptr);
+//    }
+//    catch (invalid_argument& e)
+//    {
+//        cout << e.what();
+//    }
 
-    cout << maxDist;
+//    cout << maxDist;
 
-    return 0;
-}
+//    return 0;
+//}
 
 
 
