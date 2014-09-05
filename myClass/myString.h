@@ -23,11 +23,17 @@ public:
         LEFT = 0,
         UP,
         LEFT_UP,
+
+        DOWN,
+        LEFT_DOWN,
     };
 
-    std::string findMaxSharedStr(const std::string& compare, SHARE_STR_TYPE type) const;
-    std::string findMaxSharedStr(const MyString& compare, SHARE_STR_TYPE type) const;
-    void buildPalindromeStr();
+    // returns the max-lenght shared sequence between two string
+    std::string findMaxSharedSeq(const MyString& compare, SHARE_STR_TYPE type) const;
+    std::string findMaxSharedSeq(const std::string& compare, SHARE_STR_TYPE type) const;
+
+    // returns the palindrome string of mStr by the minimum insertion of characters
+    std::string buildPalindromeStr();
 
     friend std::ostream& operator<<(std::ostream& os, const MyString& str);
     friend std::istream& operator>>(std::istream& is, MyString& str);
@@ -36,7 +42,10 @@ public:
     const std::string& getStr() const {return mStr;}
 
 private:
-    void grabShareSequence(int& i, int& j, std::string& shareSeq, int **table, int **array);
+    // a reptile to trace back the formulation routine from the maximum-len position
+    void grabShareSequence(int i, int j, const int& n, std::string& shareSeq, const int* const array) const;
+    // a reptile to trace back the formulation routine from the minimum-insert num position
+    void insertForPalindromeStr(int i, int j, int startPos, std::string& palinStr, const int* const array) const;
     std::string mStr;
 };
 
