@@ -45,7 +45,8 @@ private:
     // a reptile to trace back the formulation routine from the maximum-len position
     void grabShareSequence(int i, int j, const int& n, std::string& shareSeq, const int* const array) const;
     // a reptile to trace back the formulation routine from the minimum-insert num position
-    void insertForPalindromeStr(int i, int j, int startPos, std::string& palinStr, const int* const array) const;
+    // leftPos and rightPos are the insert index for insert from begin and back from end respectively
+    void insertForPalindromeStr(int i, int j, int leftPos, int rightPos, std::string& palinStr, const int* const array) const;
     std::string mStr;
 };
 

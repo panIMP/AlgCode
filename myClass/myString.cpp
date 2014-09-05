@@ -308,11 +308,7 @@ string MyString::buildPalindromeStr()
                 table[i][i+step] = table[i+1][i+step-1];
                 arrowFlag[curPos] = LEFT_DOWN;
             }
-            // !!! here is "<=",
-            // !!! if it is "<", then the detail in insertForPalindrome will be changed!
-            // "" to replace "i" in "palinStr.insert(i, 1, mStr[j])"
-            // "" to replace "j+1" in "palinStr.insert(j+1, 1, mStr[i])"
-            else if (table[i+1][i+step] <= table[i][i+step-1])
+            else if (table[i+1][i+step] < table[i][i+step-1])
             {
                 table[i][i+step] = 1 + table[i+1][i+step];
                 arrowFlag[curPos] = DOWN;
@@ -326,7 +322,7 @@ string MyString::buildPalindromeStr()
     }
 
     // insert the necessary character in the right position to form a palindrome string
-    insertForPalindromeStr(0, m-1, 0, palinStr, arrowFlag);
+    insertForPalindromeStr(0, m-1, 0, 0, palinStr, arrowFlag);
 
     // free memory
     for (int i = 0; i < m; ++i)
@@ -345,7 +341,8 @@ string MyString::buildPalindromeStr()
 
 
 // a reptile to trace back the formulation routine from the minimum-insert num position
-void MyString::insertForPalindromeStr(int i, int j, int startPos, std::string& palinStr, const int* const array) const
+// leftPos and rightPos are the insert index for insert from begin and back from end respectively
+void MyString::insertForPalindromeStr(int i, int j, int leftPos, int rightPos, std::string& palinStr, const int* const array) const
 {
     if (i >= j)
         return;
@@ -354,27 +351,26 @@ void MyString::insertForPalindromeStr(int i, int j, int startPos, std::string& p
 
     if (array[curPos] == LEFT_DOWN)
     {
-        insertForPalindromeStr(i+1, j-1, startPos, palinStr, array);
+        insertForPalindromeStr(i+1, j-1, ++leftPos, ++rightPos, palinStr, array);
     }
     else if (array[curPos] == LEFT)
     {
-        palinStr.insert(startPos + i, 1, mStr[j]);
-        insertForPalindromeStr(i, j-1, startPos, palinStr, array);
+        palinStr.insert(palinStr.begin() + leftPos, mStr[j]);
+        insertForPalindromeStr(i, j-1, ++leftPos, ++rightPos, palinStr, array);
     }
     else if (array[curPos] == DOWN)
     {
-        palinStr.insert(j+startPos+1, 1, mStr[i]);
-        insertForPalindromeStr(i+1, j, startPos, palinStr, array);
+        palinStr.insert(palinStr.end() - rightPos, mStr[i]);
+        insertForPalindromeStr(i+1, j, ++leftPos, ++rightPos, palinStr, array);
     }
 }
 
 
 int main()
 {
-    MyString strA, strB;
-    cin >> strA >> strB;
+    MyString strA;
+    cin >> strA;
 
-    cout << strA.findMaxSharedSeq(strB, MyString::NON_CONTINUED_OK_STR) << endl;
     cout << strA.buildPalindromeStr() << endl;
 
     return 0;
