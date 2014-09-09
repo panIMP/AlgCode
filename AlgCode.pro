@@ -57,12 +57,16 @@ SOURCES += \
     second/question19_mirrorBinaryTree.cpp \
     random/insertMinCharForLoopBack.cpp \
     random/jsxInsertMinCharForLoopBack.cpp \
-    myClass/myString.cpp
+    myClass/myString.cpp \
+    myClass/main.cpp
 
 OTHER_FILES += \
 	AlgCode.pro.user
 
 HEADERS += _std.h \
 	first/_std.h \
-    myClass/myString.h
+    myClass/myString.h \
+    myTree.h \
+    myClass/myTree.h \
+    myClass/hpFun.h
 

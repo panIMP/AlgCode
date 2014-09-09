@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <stdio.h>
+#include "myClass/hpFun.h"
 
 #include <stack>
 #include <queue>
@@ -16,12 +17,6 @@ typedef int elementT;
 
 #define NULLNODE ((elementT)'#')
 
-#define DEBUG_HP
-#ifdef DEBUG_HP
-#define DEBUG_PRINT(info, ...) printf("File: " __FILE__ "\nLine: %d\n" info "\n\n", __LINE__, ##__VA_ARGS__)
-#else
-#define DEBUG_PRINT(info, ...)
-#endif
 
 // Tree type enumeration
 enum BINARY_TREE_TYPE
@@ -348,8 +343,8 @@ BinaryTree::BinaryTreeNode* BinaryTree::insertOneElementIntoSearchTree(const ele
 
 BinaryTree::~BinaryTree()
 {
-    //releaseRecursively(this->mPRoot);
-    releaseLayerOrder(this->mPRoot);//recommended
+    releaseRecursively(this->mPRoot);
+    //releaseLayerOrder(this->mPRoot);//recommended
 }
 
 
@@ -366,7 +361,6 @@ void BinaryTree::releaseRecursively(BinaryTreeNode*& pNode)
         releaseRecursively(pNode->mRight);
 
     pNode->deleteReference();
-    pNode = nullptr;
 }
 
 
@@ -686,7 +680,7 @@ void BinaryTree::printTreeLayerIter(BinaryTreeNode* pRoot) const
 //int main(int argc, char* argv[])
 //{
 //    elementT value[] = {5, 3, 4, 10, 6, 9, 1, 7, 8};
-//    BinaryTree tree;
+//    BinaryTree tree(SEARCH_TREE);
 //    for (int i = 0; i < (sizeof(value) / sizeof(elementT)); ++i)
 //        tree.insertOneElement(value[i]);
 

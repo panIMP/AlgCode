@@ -1,5 +1,6 @@
 #include "myString.h"
 #include <string.h>
+#include "myClass/myTree.h"
 
 using namespace std;
 
@@ -366,12 +367,12 @@ void MyString::insertForPalindromeStr(int i, int j, int leftPos, int rightPos, s
 }
 
 
-int main()
-{
-    MyString strA;
-    cin >> strA;
+//int main()
+//{
+//    MyString strA;
+//    cin >> strA;
 
-    cout << strA.buildPalindromeStr() << endl;
+//    cout << strA.buildPalindromeStr() << endl;
 
-    return 0;
-}
+//    return 0;
+//}
