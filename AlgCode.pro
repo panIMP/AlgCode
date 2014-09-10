@@ -68,5 +68,8 @@ HEADERS += _std.h \
     myClass/myString.h \
     myTree.h \
     myClass/myTree.h \
-    myClass/hpFun.h
+    myClass/hpFun.h \
+    myClass/MyRCObject.h \
+    myClass/MyRCPtr.h \
+    myClass/MyRCString.h
 
