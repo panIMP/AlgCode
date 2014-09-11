@@ -1,17 +1,91 @@
-#include "myString.h"
+#include "MyString.h"
 #include <string.h>
-#include "myClass/myTree.h"
+#include "myClass/MyTree.h"
+#include "hpFun.h"
+#include "MyString.h"
+
 
 using namespace std;
 
 
-std::ostream& operator<<(std::ostream& os, const MyString& str)
+int MyString::toInt()
+{
+    if (mStr.c_str() == nullptr || mStr.empty())
+    {
+        DEBUG_PRINT("null string!\n");
+        return -1;
+    }
+
+    bool negFlag = mStr[0] == '-' ? true : false;
+    int startPos = negFlag == true ? 1 : 0;
+    int retVal = 0;
+    int endPos= mStr.size();
+
+    for (int i = startPos; i < endPos; ++i)
+    {
+        int num = mStr[i] - '0';
+        if (num > 9 || num < 0)
+        {
+            DEBUG_PRINT("invalid string contains non-digit characters!\n");
+            return -1;
+        }
+
+        retVal = retVal * 10 + num;
+        if (retVal < 0)
+        {
+            DEBUG_PRINT("string too large!\n");
+            return -1;
+        }
+    }
+
+    retVal = negFlag == true ? retVal * (-1) : retVal;
+
+    return retVal;
+}
+
+long long MyString::toLonglong()
+{
+    if (mStr.c_str() == nullptr || mStr.empty())
+    {
+        DEBUG_PRINT("null string!\n");
+        return -1;
+    }
+
+    bool negFlag = mStr[0] == '-' ? true : false;
+    int startPos = negFlag == true ? 1 : 0;
+    long long retVal = 0;
+    int endPos= mStr.size();
+
+    for (int i = startPos; i < endPos; ++i)
+    {
+        int num = mStr[i] - '0';
+        if (num > 9 || num < 0)
+        {
+            DEBUG_PRINT("invalid string contains non-digit characters!\n");
+            return -1;
+        }
+
+        retVal = retVal * 10 + num;
+        if (retVal < 0)
+        {
+            DEBUG_PRINT("string too large!\n");
+            return -1;
+        }
+    }
+
+    retVal = negFlag == true ? retVal * (-1) : retVal;
+
+    return retVal;
+}
+
+
+std::ostream& operator << (std::ostream& os, const MyString& str)
 {
     return os << str.mStr << std::endl;
 }
 
 
-std::istream& operator>>(std::istream& is, MyString& str)
+std::istream& operator >> (std::istream& is, MyString& str)
 {
     is >> str.mStr;
     if (!is)

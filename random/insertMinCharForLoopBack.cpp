@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-#include <myClass/myString.h>
+#include <myClass/MyString.h>
 
 using namespace std;
 

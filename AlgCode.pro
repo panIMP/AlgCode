@@ -65,11 +65,12 @@ OTHER_FILES += \
 
 HEADERS += _std.h \
 	first/_std.h \
-    myClass/myString.h \
     myTree.h \
-    myClass/myTree.h \
     myClass/hpFun.h \
     myClass/MyRCObject.h \
     myClass/MyRCPtr.h \
-    myClass/MyRCString.h
+    myClass/MyRCString.h \
+    myClass/MyString.h \
+    myClass/MyTree.h \
+    myClass/MyList.h
 

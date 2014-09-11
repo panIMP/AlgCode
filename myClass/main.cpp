@@ -1,6 +1,9 @@
-#include "myClass/myTree.h"
+#include "myClass/MyTree.h"
 #include <iostream>
 #include <myClass/MyRCString.h>
+#include <string>
+#include <myClass/MyString.h>
+#include <myClass/MyList.h>
 
 using namespace std;
 
@@ -8,29 +11,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    MySigList<int> list;
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
 
-    MyRCString a("joke");
-    MyRCString b = a;
-    MyRCString c = a;
-    MyRCString d = MyRCString(a);
-    MyRCString* e = new MyRCString();
-
-    cout << a[0] << endl;
-    cout << b[1] << endl;
-
-    cout << c[2] << d[3] << endl;
-
-
-//    MyBiSearchTree<long long> tree;
-//    tree.insert(1);
-//    tree.insert(4);
-//    tree.insert(5);
-
-//    tree.insert(7);
-//    tree.insert(2);
-//    tree.insert(6);
-
-//    tree.printTreeInList(MyBiSearchTree<long long>::LAYER_ORDER);
+    cout << ((list.findKthToTail(2))->mValue) << endl;
 
     return 0;
 }

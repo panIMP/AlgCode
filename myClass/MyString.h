@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "hpFun.h"
 
 class MyString
 {
@@ -28,6 +29,10 @@ public:
         LEFT_DOWN,
     };
 
+    int toInt();
+
+    long long toLonglong();
+
     // returns the max-lenght shared sequence between two string
     std::string findMaxSharedSeq(const MyString& compare, SHARE_STR_TYPE type) const;
     std::string findMaxSharedSeq(const std::string& compare, SHARE_STR_TYPE type) const;
@@ -35,8 +40,8 @@ public:
     // returns the palindrome string of mStr by the minimum insertion of characters
     std::string buildPalindromeStr();
 
-    friend std::ostream& operator<<(std::ostream& os, const MyString& str);
-    friend std::istream& operator>>(std::istream& is, MyString& str);
+    friend std::ostream& operator << (std::ostream& os, const MyString& str);
+    friend std::istream& operator >> (std::istream& is, MyString& str);
 
     void setStr(const std::string& str) {mStr = str;}
     const std::string& getStr() const {return mStr;}
@@ -51,8 +56,8 @@ private:
 };
 
 
-std::ostream& operator<<(std::ostream& os, const MyString& str);
-std::istream& operator>>(std::istream& is, MyString& str);
+std::ostream& operator << (std::ostream& os, const MyString& str);
+std::istream& operator >> (std::istream& is, MyString& str);
 
 
 
